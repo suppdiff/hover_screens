@@ -1,0 +1,5 @@
+*.plasmoid
+*.kwinscript
+*.tar.gz
+*~
+.DS_Store

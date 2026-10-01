@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Name": "Hover Screens Companion",
+        "Description": "Narrow per-output virtual desktop switching bridge for Hover Screens.",
+        "Icon": "activities",
+        "Id": "io.github.suppdiff.hoverscreens.companion",
+        "Version": "1.0.0",
+        "License": "GPL-3.0-or-later"
+    },
+    "X-Plasma-API": "javascript",
+    "X-Plasma-MainScript": "code/main.js",
+    "KPackageStructure": "KWin/Script"
+}

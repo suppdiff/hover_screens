@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Category": "Windows and Tasks",
+        "Description": "Live Overview and Grid View previews with per-screen virtual desktop controls.",
+        "Icon": "activities",
+        "Id": "io.github.suppdiff.hoverscreens",
+        "License": "GPL-3.0-or-later",
+        "Name": "Hover Screens",
+        "Version": "1.0.0"
+    },
+    "KPackageStructure": "Plasma/Applet",
+    "X-Plasma-API-Minimum-Version": "6.4"
+}

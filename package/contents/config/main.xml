@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+    <kcfgfile name="" />
+    <group name="General">
+        <entry name="primaryAction" type="String">
+            <default>Overview</default>
+        </entry>
+        <entry name="overviewLayout" type="String">
+            <default>natural</default>
+        </entry>
+        <entry name="overviewArrangement" type="String">
+            <default>fill</default>
+        </entry>
+        <entry name="gridLayout" type="String">
+            <default>spatial</default>
+        </entry>
+        <entry name="gridGrouping" type="String">
+            <default>desktop</default>
+        </entry>
+        <entry name="gridArrangement" type="String">
+            <default>kde</default>
+        </entry>
+        <entry name="usePopup" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="livePreviewMode" type="String">
+            <default>hover</default>
+        </entry>
+        <entry name="previewStartDelay" type="Int">
+            <default>90</default>
+        </entry>
+        <entry name="previewStopDelay" type="Int">
+            <default>300</default>
+        </entry>
+        <entry name="clipSpatialWindows" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="wrapDesktopScrolling" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="middleClickEnabled" type="Bool">
+            <default>true</default>
+        </entry>
+    </group>
+</kcfg>
