@@ -283,8 +283,9 @@ Item {
 
                     width: root.targetButtonWidth
 
-                    anchors.verticalCenter:
-                        parent.verticalCenter
+                    // Bind to the stable row id, not the transient delegate
+                    // parent (which can become null during model teardown).
+                    anchors.verticalCenter: desktopRow.verticalCenter
 
                     radius:
                         Kirigami.Units.smallSpacing

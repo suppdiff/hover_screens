@@ -48,11 +48,24 @@ Item {
 
     clip: true
 
-    Item {
+    // Mount both views only while this surface is presented. Previously every
+    // applet eagerly built the popup AND inline scene, each with Overview and
+    // Grid TaskManager models, even while the popup was closed. Keeping both
+    // views within the active scene preserves fast Overview/Grid switching.
+    Loader {
         id: contentHost
 
         anchors.fill: parent
-        clip: true
+        active: root.presentationActive
+        sourceComponent: presentedContent
+    }
+
+    Component {
+        id: presentedContent
+
+        Item {
+            anchors.fill: parent
+            clip: true
 
             // Keep Overview mounted even while Grid is selected. The expensive
             // live-capture path is still disabled because presentationActive is
@@ -162,5 +175,6 @@ Item {
                             desktopNumber
                         )
             }
+        }
     }
 }

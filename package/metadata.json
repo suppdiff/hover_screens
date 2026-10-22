@@ -6,7 +6,7 @@
         "Id": "io.github.suppdiff.hoverscreens",
         "License": "GPL-3.0-or-later",
         "Name": "Hover Screens",
-        "Version": "1.0.0"
+        "Version": "1.0.1"
     },
     "KPackageStructure": "Plasma/Applet",
     "X-Plasma-API-Minimum-Version": "6.4"

@@ -386,6 +386,13 @@ PlasmoidItem {
             return
         }
 
+        // KWin can publish the same per-output state repeatedly (including
+        // on desktop/output notifications). Do not invalidate every preview
+        // binding when the authoritative value has not actually changed.
+        if (screenDesktopState[String(screenName)] === number) {
+            return
+        }
+
         const next = Object.assign(
             {},
             screenDesktopState

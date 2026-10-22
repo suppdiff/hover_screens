@@ -29,6 +29,170 @@ a small bundled KWin JavaScript companion.
 
 Developed and live-tested on Plasma 6.7.x.
 
+## Installation
+
+Hover Screens requires **KDE Plasma 6.4 or newer on Wayland**. PipeWire and the
+KDE PipeWire QML module must be available for live previews. Packages include
+both the **Plasmoid** and the **KWin companion**; do not install either
+separately when using a distro package.
+
+Download release files from the project's GitHub **Releases** page. Install only
+one variant (a distro package or the local component archives), not both.
+
+### Local - new
+
+For a user-local installation without `sudo`, download the matching `.plasmoid`
+and `.kwinscript` release assets. From the directory containing them:
+
+```
+kpackagetool6 -t Plasma/Applet -i ./Hover_Screens-1.0.1.plasmoid
+kpackagetool6 -t KWin/Script -i ./Hover_Screens-Companion-1.0.0.kwinscript
+```
+
+Enable **Hover Screens Companion** in **System Settings - Window
+Management - KWin Scripts**. If KWin does not activate it immediately, sign
+out and back in.
+
+Restart Plasma Shell after installation or updating:
+
+```
+systemctl --user restart plasma-plasmashell.service
+```
+
+Alternatively, enable it from a terminal:
+
+kwriteconfig6 --file kwinrc --group Plugins \
+  --key io.github.suppdiff.hoverscreens.companionEnabled true
+qdbus6 org.kde.KWin /KWin reconfigure
+
+### Local - If updating.
+
+```
+kpackagetool6 -t Plasma/Applet -u ./Hover_Screens-1.0.1.plasmoid
+kpackagetool6 -t KWin/Script -u ./Hover_Screens-Companion-1.0.0.kwinscript
+```
+
+### Arch
+
+Download `plasma6-applets-hover-screens-1.0.1-<pkgrel>-any.pkg.tar.zst`
+
+```
+sudo pacman -U ./plasma6-applets-hover-screens-1.0.1-*.pkg.tar.zst
+```
+
+Enable **Hover Screens Companion** in **System Settings - Window
+Management - KWin Scripts**. If KWin does not activate it immediately, sign
+out and back in.
+
+Restart Plasma Shell after installation or updating:
+
+```
+systemctl --user restart plasma-plasmashell.service
+```
+
+Alternatively, enable it from a terminal:
+
+kwriteconfig6 --file kwinrc --group Plugins \
+  --key io.github.suppdiff.hoverscreens.companionEnabled true
+qdbus6 org.kde.KWin /KWin reconfigure
+
+### Debian/Ubuntu
+
+Download `plasma6-applets-hover-screens_1.0.1-1_all.deb`
+
+```
+sudo apt install ./plasma6-applets-hover-screens_1.0.1-1_all.deb
+```
+
+Enable **Hover Screens Companion** in **System Settings - Window
+Management - KWin Scripts**. If KWin does not activate it immediately, sign
+out and back in.
+
+Restart Plasma Shell after installation or updating:
+
+```
+systemctl --user restart plasma-plasmashell.service
+```
+
+Alternatively, enable it from a terminal:
+
+kwriteconfig6 --file kwinrc --group Plugins \
+  --key io.github.suppdiff.hoverscreens.companionEnabled true
+qdbus6 org.kde.KWin /KWin reconfigure
+
+**Note:** Debian releases with an older KDE Plasma version do not meet the
+runtime requirement, even if the package format is supported.
+
+### Fedora
+
+On a Fedora KDE Plasma 6.4+ installation, download the matching `.rpm` asset:
+
+```
+sudo dnf install ./plasma6-applets-hover-screens-1.0.1-1*.noarch.rpm
+```
+
+Enable **Hover Screens Companion** in **System Settings - Window
+Management - KWin Scripts**. If KWin does not activate it immediately, sign
+out and back in.
+
+Restart Plasma Shell after installation or updating:
+
+```
+systemctl --user restart plasma-plasmashell.service
+```
+
+Alternatively, enable it from a terminal:
+
+kwriteconfig6 --file kwinrc --group Plugins \
+  --key io.github.suppdiff.hoverscreens.companionEnabled true
+qdbus6 org.kde.KWin /KWin reconfigure
+
+### Swapping from local install to a package
+
+If Hover Screens was previously installed locally with `kpackagetool6`, remove the local copies before installing a distro package:
+
+```
+kpackagetool6 -t Plasma/Applet -r io.github.suppdiff.hoverscreens
+kpackagetool6 -t KWin/Script -r io.github.suppdiff.hoverscreens.companion
+```
+
+Then install the Arch, Debian/Ubuntu, or Fedora package normally.
+
+This prevents a copy under `~/.local/share/` from taking precedence over the system package under `/usr/share/`.
+
+Existing Hover Screens widget settings are normally preserved.
+
+## Uninstallation
+
+### Local installation
+
+Remove both components:
+
+```
+kpackagetool6 -t Plasma/Applet -r io.github.suppdiff.hoverscreens
+kpackagetool6 -t KWin/Script -r io.github.suppdiff.hoverscreens.companion
+
+systemctl --user restart plasma-plasmashell.service
+```
+
+### Arch / CachyOS
+
+```
+sudo pacman -R plasma6-applets-hover-screens
+```
+
+### Debian / Ubuntu
+
+```
+sudo apt remove plasma6-applets-hover-screens
+```
+
+### Fedora
+
+```
+sudo dnf remove plasma6-applets-hover-screens
+```
+
 ## Features
 
 ### Overview
@@ -109,7 +273,7 @@ lifetime-gated rather than polled continuously.
 
 Overview and Grid share one per-screen renderer:
 
-```text
+```
 OverviewScreen                         GridScreenSurface
      │                                        │
      └──────────────┐          ┌──────────────┘
@@ -134,67 +298,6 @@ The KWin companion has a deliberately narrow responsibility:
 
 It does **not** poll, run shell commands, expose arbitrary JavaScript, or
 manipulate windows.
-
-## Installation
-
-Download the plasmoid and companion from the release assets.
-
-### Arch Linux / CachyOS package
-
-The release also includes a system package containing both the plasmoid and the
-KWin companion:
-
-```fish
-sudo pacman -U ./plasma6-applets-hover-screens-1.0.0-1-any.pkg.tar.zst
-
-kwriteconfig6 \
-    --file kwinrc \
-    --group Plugins \
-    --key io.github.suppdiff.hoverscreens.companionEnabled \
-    true
-
-qdbus6 org.kde.KWin /KWin reconfigure
-qdbus6 org.kde.KWin /Scripting start
-systemctl --user restart plasma-plasmashell.service
-```
-
-### Plasmoid
-
-Fresh install:
-
-```fish
-kpackagetool6 -t Plasma/Applet -i ./Hover_Screens-<version>.plasmoid
-systemctl --user restart plasma-plasmashell.service
-```
-
-Update an existing installation:
-
-```fish
-kpackagetool6 -t Plasma/Applet -u ./Hover_Screens-<version>.plasmoid
-systemctl --user restart plasma-plasmashell.service
-```
-
-### KWin companion
-
-Install the companion once for exact per-output desktop switching:
-
-```fish
-kpackagetool6 -t KWin/Script -i ./Hover_Screens-Companion-1.0.0.kwinscript
-
-kwriteconfig6 \
-    --file kwinrc \
-    --group Plugins \
-    --key io.github.suppdiff.hoverscreens.companionEnabled \
-    true
-
-qdbus6 org.kde.KWin /KWin reconfigure
-qdbus6 org.kde.KWin /Scripting start
-```
-
-To update an already-installed companion, use `-u` instead of `-i`.
-
-The companion does not need reinstalling when only the plasmoid changes and the
-companion version remains the same.
 
 ## Security notes
 
